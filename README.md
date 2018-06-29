@@ -21,9 +21,7 @@
 
 
 题目拿到了，分析一下需求，然后就可以开码了
-
-首先需要拿到数据，题目已经给出了参考链接，数据是由 js 动态生成的，一番分析之后，顺利的拿到数据。清理一下，保存为 world_cup.json。
-
+首先需要拿到数据，题目已经给出了参考链接，数据是由 js 动态生成的，一番分析之后，顺利的拿到数据。清理一下，保存为 [world_cup.json](https://github.com/chenjiandongx/world-cup/blob/master/world_cup.json)。
 数据库要求使用 sqlite3，其实这也好，python 自带的电池。数据库 ORM 使用了 [pony](https://docs.ponyorm.com/)。
 
 #### 项目结构
