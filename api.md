@@ -4,17 +4,22 @@
 **`/`**
 
 示例
-```
-http://127.0.0.1:5000/
+```bash
+$ http http://127.0.0.1:5000/
+HTTP/1.0 200 OK
+Content-Length: 32
+Content-Type: application/json
+Date: Fri, 29 Jun 2018 14:05:28 GMT
+Server: Werkzeug/0.14.1 Python/3.6.4
 
 {
-  "welcome": "Hello World!"
+    "welcome": "Hello World!"
 }
 ```
 
 
 #### 返回 32 强球队名称，使用分页
-**`all_teams?page=xx&per_page=xx`**
+**`/all_teams?page=xx&per_page=xx`**
 ```
 param: page: 页数
 param: per_page: 每页数据数量
