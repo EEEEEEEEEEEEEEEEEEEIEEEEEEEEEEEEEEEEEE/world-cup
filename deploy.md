@@ -13,7 +13,7 @@ $ pip install -r requirements
 $ python controller.py
 ```
 
-3. 境服务器建议使用 gunicorn
+3. 服务器建议使用 Gunicorn
 ```bash
 $ gunicorn -w 4 -b 127.0.0.1:4000 api:app
 # 项目将会在 4000 端口启动
