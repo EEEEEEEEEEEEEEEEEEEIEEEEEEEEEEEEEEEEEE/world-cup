@@ -2,6 +2,7 @@
 # coding=utf-8
 
 from flask import Flask, jsonify, request
+
 from controller import get_teams, most_integral, most_goal_difference, worst_games
 
 app = Flask(__name__)
