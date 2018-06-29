@@ -234,23 +234,26 @@ Server: Werkzeug/0.14.1 Python/3.6.4
 ```bash
 $ http http://127.0.0.1:5000/worst_games
 HTTP/1.0 200 OK
-Content-Length: 224
+Content-Length: 329
 Content-Type: application/json
-Date: Fri, 29 Jun 2018 13:39:40 GMT
+Date: Fri, 29 Jun 2018 14:51:00 GMT
 Server: Werkzeug/0.14.1 Python/3.6.4
 
 [
     [
-        "俄罗斯:沙特阿拉伯",
-        "5:0"
-    ],
-    [
-        "俄罗斯:沙特阿拉伯",
-        "5:0"
-    ],
-    [
         "英格兰:巴拿马",
-        "6:1"
+        "6:1",
+        "2018-06-24 20:00:00.000000"
+    ],
+    [
+        "俄罗斯:沙特阿拉伯",
+        "5:0",
+        "2018-06-14 23:00:00.000000"
+    ],
+    [
+        "俄罗斯:沙特阿拉伯",
+        "5:0",
+        "2018-06-14 23:00:00.000000"
     ]
 ]
 ```

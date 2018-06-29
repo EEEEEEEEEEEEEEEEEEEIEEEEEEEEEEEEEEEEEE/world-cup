@@ -148,12 +148,12 @@ def worst_games():
     """
     res = db.execute(
         "select (g_team1 || ':' ||  g_team2) as team, "
-        "g_score1, g_score2, "
+        "g_score1, g_score2, g_date, "
         "abs(g_score1 - g_score2) as score "
         "from GameDetails "
-        "order by score desc, g_date"
+        "order by score desc, g_date desc"
     )
-    return [(r[0], "{}:{}".format(r[1], r[2])) for i, r in enumerate(res) if i < 3]
+    return [(r[0], "{}:{}".format(r[1], r[2]), r[3]) for i, r in enumerate(res) if i < 3]
 
 
 @orm.db_session
