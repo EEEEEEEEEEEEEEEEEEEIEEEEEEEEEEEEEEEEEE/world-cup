@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
-    return "Hello World!"
+def index():
+    return jsonify({"welcome": "Hello World!"})
 
 
 @app.route("/all_teams")
@@ -51,4 +51,4 @@ def api_worst_games():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
