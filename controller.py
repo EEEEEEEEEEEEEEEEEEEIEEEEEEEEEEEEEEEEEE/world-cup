@@ -14,6 +14,9 @@ GROUPS = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
 @orm.db_session
 def add_game_details_data():
+    """
+    更新 GameDetails 数据
+    """
     with open(JSON_DATA, "r", encoding="utf8") as f:
         games = json.load(f)
         for game in games:
@@ -47,12 +50,17 @@ def add_game_details_data():
 
 @orm.db_session
 def add_team_details_data():
-
+    """
+    更新 TeamDetails 数据
+    """
     teams = orm.distinct(
         orm.select((game.g_team1, game.g_group) for game in GameDetails)
     )
 
     def init_team_details():
+        """
+        初始化表数据
+        """
         for team in teams:
             TeamDetails(
                 t_team=team[0], t_group=team[1], t_goal_difference=0, t_integral=0
@@ -60,9 +68,14 @@ def add_team_details_data():
             orm.commit()
 
     def update_team_details(team_name):
+        """
+        根据球队名称完善表数据
+
+        :param team_name: 球队名称
+        """
         _team = orm.select(t for t in TeamDetails if t.t_team == team_name).first()
 
-        # 积分
+        # 更新积分
         _team.t_integral = int(
             orm.select(
                 sum(game.g_integral1)
@@ -77,7 +90,7 @@ def add_team_details_data():
             ).first()
         )
 
-        # 净胜球
+        # 更新净胜球
         _team.t_t_goal_difference = orm.select(
             sum(team.g_goal_difference1)
             for team in GameDetails
@@ -91,12 +104,16 @@ def add_team_details_data():
         # 更新数据库
         orm.commit()
 
+    init_team_details()
     for team in teams:
         update_team_details(team[0])
 
 
 @orm.db_session
 def most_goal_difference():
+    """
+    各小组净胜球最多的球队
+    """
     _data = []
     for g in GROUPS:
         res = orm.select(x for x in TeamDetails if x.t_group == g).order_by(
@@ -109,6 +126,9 @@ def most_goal_difference():
 
 @orm.db_session
 def most_integral():
+    """
+    各小组晋级的前两名，排名优先级：积分、净胜球、球队名)
+    """
     _data = []
     for g in GROUPS:
         res = orm.select(x for x in TeamDetails if x.t_group == g).order_by(
@@ -123,6 +143,9 @@ def most_integral():
 
 @orm.db_session
 def worst_games():
+    """
+    分差最大的三场比赛，按照比赛日期逆序排序
+    """
     res = db.execute(
         "select (g_team1 || ':' ||  g_team2) as team, "
         "g_score1, g_score2, "
@@ -135,6 +158,12 @@ def worst_games():
 
 @orm.db_session
 def get_teams(page=1, per_page=32):
+    """
+    返回 32 强球队名称，使用分页
+
+    :param page: 页数
+    :param per_page: 每页数据数量
+    """
     teams = orm.select(x for x in TeamDetails).page(page, pagesize=per_page)
     return [t.t_team for t in teams]
 
