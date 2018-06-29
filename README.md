@@ -33,7 +33,7 @@
 
 
 #### 其他文档
-* [接口文档](https://github.com/chenjiandongx/world-cup/blob/master/api.py)
+* [接口文档](https://github.com/chenjiandongx/world-cup/blob/master/api.md)
 * [部署文档](https://github.com/chenjiandongx/world-cup/blob/master/deploy.md)
 
 
